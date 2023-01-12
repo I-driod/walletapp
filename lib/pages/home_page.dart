@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 MyButton(icon: 'send-money.png',
-                  text: 'Send',
+                  text: 'Send1',
 
                 ),
                 MyButton(icon: 'credit-card.png',
