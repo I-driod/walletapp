@@ -12,30 +12,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   final _controller = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: () {},
         backgroundColor: Colors.pink,
-        child: Icon(Icons.monetization_on),
+        child: Icon(Icons.monetization_on, size: 32),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        child: Row(
-          children: [
-            IconButton(onPressed:() {}, icon: Icon (Icons.home))
-          ],
+        color: Colors.grey[200],
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(onPressed: () {}, icon: Icon(Icons.home, size: 32)),
+              IconButton(onPressed: () {}, icon: Icon(Icons.settings, size: 32))
+            ],
+          ),
         ),
-
       ),
-
       body: SafeArea(
-        child: Column(children:  [
-
+        child: Column(
+          children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
 
@@ -45,20 +48,17 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Row(
                     children: [
-                      Text('My',
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold
-                      ),
+                      Text(
+                        'My',
+                        style: TextStyle(
+                            fontSize: 28, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                          ' Cards',
-                      style: TextStyle(
-                        fontSize: 28
-                      ),)
+                        ' Cards',
+                        style: TextStyle(fontSize: 28),
+                      )
                     ],
                   ),
-
                   Container(
                     padding: EdgeInsets.all(8),
                     decoration: BoxDecoration(
@@ -69,73 +69,82 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              height: 200,
+              child: PageView(
+                controller: _controller,
+                scrollDirection: Axis.horizontal,
+                children: [
+                  MyCard(
+                    expiryMonth: 3,
+                    cardNumber: 5678,
+                    balance: 700.4,
+                    color: Colors.red[300],
+                    expiryYear: 26,
+                  ),
+                  MyCard(
+                    expiryMonth: 2,
+                    cardNumber: 1234,
+                    balance: 400,
+                    color: Colors.deepPurple[300],
+                    expiryYear: 24,
+                  ),
+                  MyCard(
+                    expiryMonth: 1,
+                    cardNumber: 9012,
+                    balance: 200,
+                    color: Colors.green[300],
+                    expiryYear: 28,
+                  ),
+                ],
               ),
-          SizedBox(height: 10),
-
-          Container(
-            height: 200,
-            child: PageView(
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            SmoothPageIndicator(
               controller: _controller,
-              scrollDirection: Axis.horizontal,
-              children: [
-                MyCard(expiryMonth: 3,
-                cardNumber: 5678,
-                balance: 700.4,
-                color: Colors.red[300],
-                  expiryYear: 26,),
-                MyCard(expiryMonth: 2,
-                  cardNumber: 1234,
-                  balance: 400,
-                  color: Colors.deepPurple[300],
-                  expiryYear: 24,),
-                MyCard(expiryMonth: 1,
-                  cardNumber: 9012,
-                  balance: 200,
-                  color: Colors.green[300],
-                  expiryYear: 28,),
-              ],
+              count: 3,
+              effect: ExpandingDotsEffect(activeDotColor: Colors.grey.shade700),
             ),
-          ),
-          SizedBox(height: 25,),
-          SmoothPageIndicator(controller:_controller, count: 3,
-            effect: ExpandingDotsEffect(activeDotColor: Colors.grey.shade700),),
-
-          SizedBox(height: 25,),
-
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                MyButton(icon: 'send-money.png',
-                  text: 'Send',
-
-                ),
-                MyButton(icon: 'credit-card.png',
-                  text: 'Send',
-
-                ),
-                MyButton(icon: 'bill.png',
-                  text: 'Send',
-
-                ),
-              ],
+            SizedBox(
+              height: 25,
             ),
-          ),
-          Expanded(
-            child: MyListTitle(titleIcon: 'analysis',
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MyButton(
+                    icon: 'send-money.png',
+                    text: 'Send',
+                  ),
+                  MyButton(
+                    icon: 'credit-card.png',
+                    text: 'Send',
+                  ),
+                  MyButton(
+                    icon: 'bill.png',
+                    text: 'Send',
+                  ),
+                ],
+              ),
+            ),
+            MyListTitle(
+              titleIcon: 'analysis',
               titleName: 'Payment and Income',
               titleSubName: 'Transaction history',
             ),
-          ),
-          MyListTitle(titleIcon: 'transaction',
-            titleName: 'Transaction',
-            titleSubName: 'Transaction history',
-          ),
+            MyListTitle(
+              titleIcon: 'transaction',
+              titleName: 'Transaction',
+              titleSubName: 'Transaction history',
+            ),
           ],
         ),
       ),
-
     );
   }
 }

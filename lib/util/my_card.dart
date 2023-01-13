@@ -30,22 +30,30 @@ class MyCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10),
+            Row(children: [
+              SizedBox(height: 20),
+              Image.asset(
+                'icons/v.png',
+                scale: 10,
+                height: 50,
+                width: 50,
+              )
+            ]),
             Text(
               'Balance',
               style: TextStyle(
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 10),
             Text(
-              '\$'+ balance.toString(),
+              '\$' + balance.toString(),
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 28,
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height:30),
+            SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -56,14 +64,11 @@ class MyCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  expiryMonth.toString()+'/'+expiryYear.toString(),
-                  style: TextStyle(
-                    color: Colors.white
-                  ),
+                  expiryMonth.toString() + '/' + expiryYear.toString(),
+                  style: TextStyle(color: Colors.white),
                 )
               ],
             )
-
           ],
         ),
       ),
